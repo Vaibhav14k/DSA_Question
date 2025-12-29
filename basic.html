@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Spin Wheel</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      background: #f7f7f7;
+      font-family: Arial, sans-serif;
+    }
+
+    .wheel-container {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      border: 8px solid #333;
+      overflow: hidden;
+      transform: rotate(0deg);
+      transition: transform 4s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    .wheel-section {
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      top: 50%;
+      left: 50%;
+      transform-origin: 0% 0%;
+      background: #ffcc00;
+      color: #333;
+      text-align: center;
+      line-height: 150px;
+      font-weight: bold;
+    }
+
+    #pointer {
+      width: 0;
+      height: 0;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-bottom: 30px solid red;
+      margin-bottom: 15px;
+    }
+
+    #spinBtn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      background: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div id="pointer"></div>
+  <div class="wheel-container" id="wheel"></div>
+  <button id="spinBtn">Spin</button>
+  <div id="result"></div>
+
+  <script>
+    const options = ["Option 1", "Option 2", "Option 3", "Option 4", "Option 5", "Option 6"];
+    const wheel = document.getElementById("wheel");
+    const result = document.getElementById("result");
+    let currentRotation = 0;
+
+    // Create wheel sections
+    const sliceAngle = 360 / options.length;
+    options.forEach((option, index) => {
+      const section = document.createElement("div");
+      section.classList.add("wheel-section");
+      section.style.transform = `rotate(${sliceAngle * index}deg) skewY(${90 - sliceAngle}deg)`;
+      section.style.background = index % 2 === 0 ? "#ffcc00" : "#00ccff";
+      section.innerHTML = `<span style="transform: skewY(-${90 - sliceAngle}deg) rotate(-${sliceAngle / 2}deg); display:inline-block;">${option}</span>`;
+      wheel.appendChild(section);
+    });
+
+    // Spin logic
+    document.getElementById("spinBtn").addEventListener("click", () => {
+      const spinAngle = Math.floor(5000 + Math.random() * 2000); // random spin
+      currentRotation += spinAngle;
+      wheel.style.transform = `rotate(${currentRotation}deg)`;
+
+      setTimeout(() => {
+        const actualDeg = currentRotation % 360;
+        const selectedIndex = Math.floor((options.length - (actualDeg / sliceAngle)) % options.length);
+        result.textContent = `🎉 Winner: ${options[selectedIndex]}`;
+      }, 4000); // match transition duration
+    });
+  </script>
+</body>
+</html>

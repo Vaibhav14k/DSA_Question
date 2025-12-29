@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Array Operations</title>
+</head>
+<body>
+
+<h2>Array Operations</h2>
+
+<script>
+    // Create an array
+    let arr = [10, 20, 30, 40, 50];
+    document.write("Original Array: " + arr + "<br><br>");
+
+    // 1️⃣ Remove a specific element (Example: 30)
+    // let removeElement = 30;
+    // arr = arr.filter(num => num !== removeElement);
+    // document.write("After removing " + removeElement + ": " + arr + "<br>");
+    let value = 20;
+    arr = arr.filter(nums=>nums !== value);
+    document.write("after remove"+value+arr);
+    // 2️⃣ Check if array contains a value (Example: 40)
+    let checkValue = 40;
+    let exists = arr.includes(checkValue);
+    document.write("Contains " + checkValue + "? " + exists + "<br>");
+
+    // 3️⃣ Empty the array
+    arr = [];
+    document.write("Array after empty: " + arr + "<br>");
+</script>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>hel</h1>
+    <h2>Triagnle calucaltion : </h2>
+    base : <input type="number" id="base" > <br>
+    height : <input type="number" id="height"> <br>
+    <button onclick="calculate()" >area_of_triangle</button>
+    <br>
+    lenght : <input type="number" id="l" > <br>
+    breath : <input type="number" id="b"> <br>
+    <button onclick="calculate_rect()" >area</button>
+    radius : <input type="number" id="r" > <br>
+    <button onclick="calculate_circle()" >area</button>
+    <script>
+        function calculate(){
+            var base = (document.querySelector("#base").value);
+            var height = (document.querySelector("#height").value);
+            let a = 0.5 * base* height;
+            alert("area of triangle " + a);
+        }
+        function calculate_rect(){
+            var len = document.querySelector("#l").value;
+            var bre = document.querySelector("#b").value;
+            let b= len * bre;
+            alert(b);
+        }
+        function calculate_circle(){
+            let a = document.querySelector("#r").value;
+            let area = 3.14 * a * a;
+            alert(area);
+        }
+    </script>
+</body>
+</html>

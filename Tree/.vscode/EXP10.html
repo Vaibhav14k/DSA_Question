@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>Regex Examples</title></head>
+<body>
+<script>
+// 1) Create regex: literal and constructor
+const reLiteral = /hello/i;                // 'i' => case-insensitive
+const reConstructor = new RegExp("hello","i");
+
+// 2) test() — true/false if pattern exists
+console.log(reLiteral.test("Hello world")); // true
+
+// 3) match() — get matches (on a string)
+console.log("abc 123 abc".match(/abc/g));   // ["abc","abc"]
+
+// 4) exec() — returns match object with groups (useful in loops)
+const re = /(\d{3})-(\d{4})/;               // e.g. 123-4567
+let s = "Call 123-4567 or 555-1212";
+let m;
+while ((m = re.exec(s)) !== null) {
+  console.log(`Found ${m[0]} at ${m.index} - group1=${m[1]} group2=${m[2]}`);
+}
+
+// 5) replace() — replace matches
+console.log("I like cats".replace(/cats/, "dogs")); // "I like dogs"
+
+// 6) search() — first match index or -1
+console.log("find me".search(/me/));         // 5
+
+// 7) split() — split by regex
+console.log("one,two;three four".split(/[,; ]+/)); // ["one","two","three","four"]
+
+// 8) Useful patterns
+// digits: \d  whitespace: \s  word char: \w  negation: \D \S \W
+console.log(/\d+/.test("100 items"));        // true
+
+// 9) Anchors: ^ (start), $ (end)
+console.log(/^[A-Za-z]+$/.test("Hello"));    // true
+console.log(/^[A-Za-z]+$/.test("Hello123")); // false
+
+// 10) Quantifiers: ?, +, *, {m,n}
+console.log(/colou?r/.test("color"));   // true (u optional)
+console.log(/colou?r/.test("colour"));  // true
+
+// 11) Character classes and ranges
+console.log(/[aeiou]/i.test("sky"));    // false
+console.log(/[0-9A-F]+/i.test("1A3F")); // true (hex digits)
+
+// 12) Word boundary \b
+console.log(/\bcat\b/.test("a cat is"));    // true
+console.log(/\bcat\b/.test("catalog"));     // false
+
+// 13) Flags: g (global), i (ignore case), m (multiline), u (unicode)
+const txt = "Dog dog DOG";
+console.log(txt.match(/dog/gi)); // ["Dog","dog","DOG"]
+
+// 14) Email (simple) validation example
+const emailRe = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+console.log(emailRe.test("user@example.com")); // true
+console.log(emailRe.test("bad@address@x"));    // false
+
+// 15) Phone number flexible example (10 digits, with separators)
+const phoneRe = /^(\+?\d{1,3}[- ]?)?\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}$/;
+console.log(phoneRe.test("123-456-7890")); // true
+console.log(phoneRe.test("(123) 456 7890"));// true
+
+</script>
+</body>
+</html>

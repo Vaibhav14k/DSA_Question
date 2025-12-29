@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Object & Array Operations</title>
+</head>
+<body>
+
+<h2>Append Object to Array & Check Array</h2>
+
+<script>
+    // Create an array
+    let arr = [1, 2, 3];
+    document.write("Original Array: " + arr + "<br><br>");
+
+    // Create an object
+    let obj = { name: "Vaibhav", age: 21 };
+
+    // Append object to the array
+    arr.push(obj);
+    document.write("After appending object: " + JSON.stringify(arr) + "<br><br>");
+
+    // Check if arr is an array
+    if (Array.isArray(arr)) {
+        document.write("Yes, 'arr' is an Array ✅");
+    } else {
+        document.write("No, 'arr' is not an Array ❌");
+    }
+</script>
+
+</body>
+</html>
