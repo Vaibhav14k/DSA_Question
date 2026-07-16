@@ -14,7 +14,7 @@ void rotatearray(vector<int> &arr,int d){
         arr[i-d] = arr[i];
     }
     for(int i=n-d;i<n;i++){
-        arr[i]= temp[i-d-1];
+        arr[i]= temp[i-(n-d)];
     }
 }
 int main(){
