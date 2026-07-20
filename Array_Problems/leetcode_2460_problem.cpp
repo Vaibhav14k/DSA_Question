@@ -16,6 +16,7 @@ public:
         }
 
         // Step 2: Move all non-zero elements to the front
+
         vector<int> ans;
 
         for (int i = 0; i < n; i++) {
